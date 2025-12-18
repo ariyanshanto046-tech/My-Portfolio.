@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Designer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables - সহজেই কালার বা ফন্ট পরিবর্তনের জন্য */
+        :root {
+            --primary-color: #000000;
+            --accent-color: #007AFF;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --section-bg: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Full Screen Sections (Slides) */
+        section {
+            min-height: 100vh;
+            padding: 100px 10% 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 800;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 20px;
+        }
+
+        /* Slide 1: Hero */
+        #home {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* Slide 6: Projects Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #eee;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Skills/Experience Lists */
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--section-bg);
+            border-radius: 8px;
+        }
+
+        /* Footer/Personal Info */
+        footer {
+            padding: 50px 10%;
+            background: #111;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
+            #home h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MY POTFOLIO.</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1>Hossain Mahamud Shanto</h1>
+        <p>Junior Graphic Designer</p>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p style="font-size: 1.2rem; max-width: 800px;">
+            I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Since then, I have been honing my skills in creating clean and impactful visuals. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work. I am dedicated to delivering quality designs that effectively communicate a brand's message.
+        </p>
+    </section>
+
+    <section id="experience" style="background-color: var(--section-bg);">
+        <h2 class="section-title">Experience</h2>
+        <ul class="info-list">
+            <li>
+                <strong>Junior Graphic Designer</strong> - Freelance & Training (2023 – Present)
+                <p>I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Since then, I have been honing my skills in creating clean and impactful visuals. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work. I am dedicated to delivering quality designs that effectively communicate a brand's message.</p>
+            </li>
+            <li>
+                <strong>Digital Service & IT Specialist</strong> - Confidence Library (2022 - 2025)
+                <p>Expertly managed diverse digital services, including NID, Birth Registrations, and government applications. Specialized in data management, technical troubleshooting, and streamlined online workflows. Proven ability to deliver accurate results under tight deadlines while maintaining excellent user support and operational efficiency.</p>
+            </li>
+        </ul>  
+    <section id="education">
+    <h2 class="section-title">Education</h2>
+    <ul class="info-list">
+        <li>
+            <strong>Diploma in Computer Science & Technology</strong>
+            <p>Munshiganj Polytechnic Institute</p>
+            <p>(2023 - Present)</p>
+            <p>বর্তমানে ৪র্থ পর্বে অধ্যয়নরত।</p>
+        </li>
+        <li>
+            <strong>Secondary School Certificate (SSC)</strong>
+            <p>Hossainpur S.P. Union High School</p>
+            <p>Vocational (Building Maintenance)</p>
+            <p>(2017 - 2023)</p>
+        </li>
+    </ul>
+</section>
+
+    <section id="skills" style="background-color: var(--section-bg);">
+        <h2 class="section-title">Skills</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Photoshop 2022</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Illustrator 2022</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius:20px;">
+    Microsoft Word</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Microsoft Excel</span>
+         
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <p>Project 1: Logo Branding</p>
+                </div>
+            <div class="project-card">
+                <p>Project 2: App UI Design</p>
+            </div>
+            <div class="project-card">
+                <p>Project 3: Poster Design</p>
+            </div>
+            </div>
+    </section>
+
+    <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> linkedin.com/in/username</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
+    <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
+
+</body>
+</html>
