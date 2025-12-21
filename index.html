@@ -160,6 +160,15 @@
             nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
             #home h1 { font-size: 2.5rem; }
         }
+    .filter-container { text-align: center; margin-bottom: 30px; }
+.filter-btn {
+    border: none; outline: none; padding: 10px 18px; background-color: #eee;
+    cursor: pointer; margin: 5px; border-radius: 5px; font-weight: 600;
+}
+.filter-btn.active { background-color: #007AFF; color: white; }
+.project-card { display: none; } /* শুরুতে সব ছবি লুকানো থাকবে */
+.project-card.show { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -231,22 +240,49 @@
     </section>
 
     <section id="projects">
-        <h2 class="section-title">My Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <p>Project 1: Logo Branding</p>
-                </div>
-            <div class="project-card">
-                <p>Project 2: App UI Design</p>
-            </div>
-            <div class="project-card">
-                <p>Project 3: Poster Design</p>
-            </div>
-            </div>
-    </section>
+    <h2 class="section-title">My Projects</h2>
+    
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+        <button class="filter-btn" onclick="filterSelection('id-card')">ID Card Design</button>
+        <button class="filter-btn" onclick="filterSelection('logo')">Logo Design</button>
+        <button class="filter-btn" onclick="filterSelection('t-shirt')">T-Shirt Design</button>
+        <button class="filter-btn" onclick="filterSelection('thumbnail')">Thumbnail Design</button>
+        <button class="filter-btn" onclick="filterSelection('poster')">Poster Design</button>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-card id-card">
+            <img src="c (1).jpg" alt="ID Card Design">
+        </div>
+
+        <div class="project-card logo">
+             <p style="text-align:center; padding:20px; background:#ddd;">Logo Image Here</p>
+        </div>
+    </div>
+</section>
 
     <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> linkedin.com/in/username</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
+<script>
+    function filterSelection(c) {
+        var x = document.getElementsByClassName("project-card");
+        if (c == "all") c = "";
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("show");
+            if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
+        }
+    }
 
+    // বাটন এক্টিভ রাখার জন্য
+    var btns = document.getElementsByClassName("filter-btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            document.querySelector(".filter-btn.active").classList.remove("active");
+            this.classList.add("active");
+        });
+    }
+    filterSelection("all");
+</script>
 </body>
 </html>
