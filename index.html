@@ -27,76 +27,117 @@
         nav .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 0.9rem; }
+        nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        nav ul li a:hover { color: var(--accent-color); }
 
         /* General Sections */
         section { min-height: 100vh; padding: 100px 10% 50px; display: flex; flex-direction: column; justify-content: center; }
         .section-title { font-size: 2.5rem; margin-bottom: 40px; font-weight: 800; border-left: 5px solid var(--accent-color); padding-left: 20px; }
 
         #home { background-color: var(--primary-color); color: white; text-align: center; }
-        #home h1 { font-size: 4rem; }
+        #home h1 { font-size: 4rem; margin-bottom: 10px; }
+        #home p { font-size: 1.5rem; opacity: 0.8; }
 
-        .info-list li { margin-bottom: 20px; padding: 20px; background: var(--section-bg); border-radius: 8px; list-style: none; }
+        .info-list { list-style: none; }
+        .info-list li { margin-bottom: 20px; padding: 20px; background: var(--section-bg); border-radius: 8px; }
 
-        /* --- PROJECTS & ALBUM SYSTEM CSS --- */
+        /* --- PROJECTS SYSTEM CSS --- */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             width: 100%;
         }
-
         .album-card {
-            position: relative;
-            height: 250px;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative; height: 250px; border-radius: 15px;
+            overflow: hidden; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
         .album-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .album-card:hover img { transform: scale(1.1); }
-
         .album-info {
             position: absolute; bottom: 0; left: 0; right: 0;
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
             color: white; padding: 20px;
         }
-
         .folder-icon { position: absolute; bottom: 20px; right: 20px; font-size: 1.5rem; }
-
-        .project-card { 
-            height: 300px; 
-            border-radius: 10px; 
-            overflow: hidden; 
-            display: none; /* শুরুতে লুকানো থাকবে */
-        }
+        .project-card { height: 300px; border-radius: 10px; overflow: hidden; display: none; }
         .project-card img { width: 100%; height: 100%; object-fit: contain; background: #f0f0f0; }
-
         .back-btn {
             padding: 12px 25px; background: #000; color: white; border: none;
             border-radius: 5px; cursor: pointer; margin-bottom: 30px; font-weight: bold;
         }
 
-        footer { padding: 50px 10%; background: #111; color: white; }
+        footer { padding: 60px 10%; background: #111; color: white; }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            nav ul { display: none; }
+            #home h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MY POTFOLIO.</div>
+        <div class="logo">MY PORTFOLIO.</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section id="home">
         <h1>HOSSAIN MAHAMUD SHANTO</h1>
         <p>Junior Graphic Designer</p>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p style="font-size: 1.2rem; max-width: 800px;">
+            I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work.
+        </p>
+    </section>
+
+    <section id="experience" style="background-color: var(--section-bg);">
+        <h2 class="section-title">Experience</h2>
+        <ul class="info-list">
+            <li>
+                <strong>Junior Graphic Designer</strong> - Freelance (2023 – Present)
+                <p>Honing my skills in creating clean and impactful visuals.</p>
+            </li>
+            <li>
+                <strong>Digital Service Specialist</strong> - Confidence Library (2022 - 2025)
+                <p>Managed NID, Birth Registrations, and IT troubleshooting.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <ul class="info-list">
+            <li>
+                <strong>Diploma in Computer Science & Technology</strong>
+                <p>Munshiganj Polytechnic Institute (2023 - Present)</p>
+            </li>
+            <li>
+                <strong>Secondary School Certificate (SSC)</strong>
+                <p>Hossainpur S.P. Union High School (2017 - 2023)</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="skills" style="background-color: var(--section-bg);">
+        <h2 class="section-title">Skills</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Photoshop</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Illustrator</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Microsoft Word</span>
+            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Microsoft Excel</span>
+        </div>
     </section>
 
     <section id="projects">
@@ -111,7 +152,6 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
-
             <div class="album-card" onclick="openAlbum('logo')">
                 <img src="project 11.png" alt="Logo">
                 <div class="album-info">
@@ -120,7 +160,6 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
-
             <div class="album-card" onclick="openAlbum('poster')">
                 <img src="Screenshot 2025-12-31 233246.jpg" alt="Poster">
                 <div class="album-info">
@@ -129,41 +168,43 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
-            </div>
+        </div>
 
         <div id="photo-view" style="display: none;">
             <button class="back-btn" onclick="closeAlbum()">← Back to Albums</button>
             <div class="project-grid">
                 <div class="project-card id-card"><img src="project 1.png"></div>
                 <div class="project-card id-card"><img src="id-2.png"></div>
-
                 <div class="project-card logo"><img src="project 11.png"></div>
                 <div class="project-card logo"><img src="Screenshot 2025-12-31 233226.png"></div>
-
                 <div class="project-card poster"><img src="Screenshot 2025-12-31 233246.jpg"></div>
             </div>
         </div>
     </section>
 
-    <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
-    <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
+    <footer id="contact">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+            <div>
+                <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2>
+                <p><strong>Email:</strong> ariyanshanto046@email.com</p>
+                <p><strong>WhatsApp:</strong> +880 16476-45112</p>
+                <br>
+                <p style="opacity: 0.5;">© 2025 All Rights Reserved.</p>
+            </div>
+            <img src="c (1).jpg" alt="Photo" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover;">
+        </div>
+    </footer>
 
     <script>
         function openAlbum(category) {
             document.getElementById('album-view').style.display = 'none';
             document.getElementById('photo-view').style.display = 'block';
-            
             var photos = document.getElementsByClassName("project-card");
             for (var i = 0; i < photos.length; i++) {
-                if (photos[i].classList.contains(category)) {
-                    photos[i].style.display = "block";
-                } else {
-                    photos[i].style.display = "none";
-                }
+                photos[i].style.display = photos[i].classList.contains(category) ? "block" : "none";
             }
             window.scrollTo(0, document.getElementById('projects').offsetTop - 50);
         }
-
         function closeAlbum() {
             document.getElementById('photo-view').style.display = 'none';
             document.getElementById('album-view').style.display = 'grid';
