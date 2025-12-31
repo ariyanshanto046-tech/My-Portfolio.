@@ -51,6 +51,7 @@
         .album-card {
             position: relative; height: 250px; border-radius: 15px;
             overflow: hidden; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #eee;
         }
         .album-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .album-card:hover img { transform: scale(1.1); }
@@ -60,8 +61,10 @@
             color: white; padding: 20px;
         }
         .folder-icon { position: absolute; bottom: 20px; right: 20px; font-size: 1.5rem; }
-        .project-card { height: 300px; border-radius: 10px; overflow: hidden; display: none; }
-        .project-card img { width: 100%; height: 100%; object-fit: contain; background: #f0f0f0; }
+        
+        .project-card { height: 300px; border-radius: 10px; overflow: hidden; display: none; border: 1px solid #ddd; }
+        .project-card img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+        
         .back-btn {
             padding: 12px 25px; background: #000; color: white; border: none;
             border-radius: 5px; cursor: pointer; margin-bottom: 30px; font-weight: bold;
@@ -98,7 +101,7 @@
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <p style="font-size: 1.2rem; max-width: 800px;">
-            I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work.
+            I am a passionate Graphic Designer with a solid foundation in design principles. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work.
         </p>
     </section>
 
@@ -144,6 +147,7 @@
         <h2 class="section-title">My Projects</h2>
 
         <div id="album-view" class="project-grid">
+            
             <div class="album-card" onclick="openAlbum('id-card')">
                 <img src="project 1.png" alt="ID Card"> 
                 <div class="album-info">
@@ -152,6 +156,7 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
+
             <div class="album-card" onclick="openAlbum('logo')">
                 <img src="project 11.png" alt="Logo">
                 <div class="album-info">
@@ -160,6 +165,7 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
+
             <div class="album-card" onclick="openAlbum('poster')">
                 <img src="Screenshot 2025-12-31 233246.jpg" alt="Poster">
                 <div class="album-info">
@@ -168,16 +174,53 @@
                     <span class="folder-icon">📂</span>
                 </div>
             </div>
+
+            <div class="album-card" onclick="openAlbum('t-shirt')">
+                <img src="tshirt-cover.png" alt="T-Shirt"> <div class="album-info">
+                    <h3>T-Shirt Designs</h3>
+                    <p>Click to view collection</p>
+                    <span class="folder-icon">📂</span>
+                </div>
+            </div>
+
+            <div class="album-card" onclick="openAlbum('thumbnail')">
+                <img src="thumb-cover.png" alt="Thumbnail"> <div class="album-info">
+                    <h3>Thumbnail Designs</h3>
+                    <p>Click to view collection</p>
+                    <span class="folder-icon">📂</span>
+                </div>
+            </div>
+
         </div>
 
         <div id="photo-view" style="display: none;">
             <button class="back-btn" onclick="closeAlbum()">← Back to Albums</button>
+            
             <div class="project-grid">
+                
                 <div class="project-card id-card"><img src="project 1.png"></div>
                 <div class="project-card id-card"><img src="id-2.png"></div>
+                <div class="project-card id-card"><img src="id-3.png"></div>
+                <div class="project-card id-card"><img src="id-4.png"></div>
                 <div class="project-card logo"><img src="project 11.png"></div>
                 <div class="project-card logo"><img src="Screenshot 2025-12-31 233226.png"></div>
+                <div class="project-card logo"><img src="logo-3.png"></div>
+                <div class="project-card logo"><img src="logo-4.png"></div>
+                <div class="project-card logo"><img src="logo-5.png"></div>
+
                 <div class="project-card poster"><img src="Screenshot 2025-12-31 233246.jpg"></div>
+                <div class="project-card poster"><img src="poster-2.jpg"></div>
+                <div class="project-card poster"><img src="poster-3.jpg"></div>
+                <div class="project-card poster"><img src="poster-4.jpg"></div>
+
+                <div class="project-card t-shirt"><img src="tshirt-1.png"></div>
+                <div class="project-card t-shirt"><img src="tshirt-2.png"></div>
+                <div class="project-card t-shirt"><img src="tshirt-3.png"></div>
+
+                <div class="project-card thumbnail"><img src="thumb-1.png"></div>
+                <div class="project-card thumbnail"><img src="thumb-2.png"></div>
+                <div class="project-card thumbnail"><img src="thumb-3.png"></div>
+                
             </div>
         </div>
     </section>
@@ -199,12 +242,20 @@
         function openAlbum(category) {
             document.getElementById('album-view').style.display = 'none';
             document.getElementById('photo-view').style.display = 'block';
+            
             var photos = document.getElementsByClassName("project-card");
+            
+            // সব ছবি লুপ করে চেক করা
             for (var i = 0; i < photos.length; i++) {
-                photos[i].style.display = photos[i].classList.contains(category) ? "block" : "none";
+                if (photos[i].classList.contains(category)) {
+                    photos[i].style.display = "block"; // মিলে গেলে দেখাবে
+                } else {
+                    photos[i].style.display = "none";  // না মিললে লুকাবে
+                }
             }
             window.scrollTo(0, document.getElementById('projects').offsetTop - 50);
         }
+
         function closeAlbum() {
             document.getElementById('photo-view').style.display = 'none';
             document.getElementById('album-view').style.display = 'grid';
