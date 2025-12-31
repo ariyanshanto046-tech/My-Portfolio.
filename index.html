@@ -159,57 +159,16 @@
             nav { padding: 20px; }
             nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
             #home h1 { font-size: 2.5rem; }
-.album-grid {
-    display: grid;
-    /* auto-fit এর বদলে auto-fill ব্যবহার করুন যাতে ছবি ছোট থাকে */
-    grid-template-columns: repeat(auto-fill, minmax(10px, 20px)); 
-    gap: 20px;
-    justify-content: center;
-    max-width: 1100px;
-    margin: 40px auto; /* এটি সেকশনকে মাঝখানে রাখবে */
-    padding: 0 20px;
+        }
+    .filter-container { text-align: center; margin-bottom: 30px; }
+.filter-btn {
+    border: none; outline: none; padding: 10px 18px; background-color: #eee;
+    cursor: pointer; margin: 5px; border-radius: 5px; font-weight: 600;
 }
-
-.album-card {
-    position: relative;
-    cursor: pointer;
-    border-radius: 15px;
-    overflow: hidden;
-    background: #000;
-    aspect-ratio: 1 / 1; /* বর্গাকার নিশ্চিত করবে */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.album-card img {
-    width: 100%;
-    height: 100%; /* বর্গাকার বক্সের পুরোটা জুড়ে থাকবে */
-    object-fit: cover;
-    display: block;
-    transition: 0.3s;
-}
-
-.album-card:hover img {
-    transform: scale(1.05); /* হোভার করলে হালকা জুম হবে */
-}
-
-.album-info {
-    position: absolute; bottom: 0; left: 0; width: 100%;
-    padding: 12px; background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white; font-size: 0.85rem; text-align: center;
-}
-
-.album-info {
-    position: absolute; bottom: 0; left: 0; width: 100%;
-    padding: 10px; background: rgba(0,0,0,0.7); 
-    color: white; display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.75rem;
-}
-
-/* পপ-আপ ডিজাইন (এটিও যোগ করে দিন) */
-.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; }
-.modal-content { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-.modal-img { width: 100%; border-radius: 8px; }
-.close-modal { position: fixed; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+.filter-btn.active { background-color: #007AFF; color: white; }
+.project-card { display: none; } /* শুরুতে সব ছবি লুকানো থাকবে */
+.project-card.show { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -280,102 +239,50 @@
         </div>
     </section>
 
-  <section id="projects">
+    <section id="projects">
     <h2 class="section-title">My Projects</h2>
-    <p style="margin-bottom: 20px;">অ্যালবামে ক্লিক করে সবগুলো কাজ দেখুন</p>
     
-    <div class="album-grid">
-        <div class="album-card" onclick="openAlbum('id-card')">
-            <img src="project 10.png" alt="ID Card">
-            <div class="album-info">
-                <span><strong>ID Card</strong></span>
-                <span class="album-icon">📂 +</span>
-            </div>
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+        <button class="filter-btn" onclick="filterSelection('id-card')">ID Card Design</button>
+        <button class="filter-btn" onclick="filterSelection('logo')">Logo Design</button>
+        <button class="filter-btn" onclick="filterSelection('t-shirt')">T-Shirt Design</button>
+        <button class="filter-btn" onclick="filterSelection('thumbnail')">Thumbnail Design</button>
+        <button class="filter-btn" onclick="filterSelection('poster')">Poster Design</button>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-card id-card">
+            <img src="c (1).jpg" alt="ID Card Design">
         </div>
 
-        <div class="album-card" onclick="openAlbum('logo')">
-            <img src="project 10.png" alt="Logo">
-            <div class="album-info">
-                <span><strong>Logo Design</strong></span>
-                <span class="album-icon">📂 +</span>
-            </div>
-        </div>
-
-        <div class="album-card" onclick="openAlbum('t-shirt')">
-            <img src="project 10.png" alt="T-Shirt">
-            <div class="album-info">
-                <span><strong>T-Shirt</strong></span>
-                <span class="album-icon">📂 +</span>
-            </div>
-        </div>
-
-        <div class="album-card" onclick="openAlbum('thumbnail')">
-            <img src="project 10.png" alt="Thumbnail">
-            <div class="album-info">
-                <span><strong>Thumbnail</strong></span>
-                <span class="album-icon">📂 +</span>
-            </div>
-        </div>
-
-        <div class="album-card" onclick="openAlbum('poster')">
-            <img src="project 10.png" alt="Poster">
-            <div class="album-info">
-                <span><strong>Poster</strong></span>
-                <span class="album-icon">📂 +</span>
-            </div>
+        <div class="project-card logo">
+             <p style="text-align:center; padding:20px; background:#ddd;">Logo Image Here</p>
         </div>
     </div>
 </section>
 
-<div id="galleryModal" class="modal">
-    <span class="close-modal" onclick="closeAlbum()">&times;</span>
-    <div class="modal-content" id="modalContainer"></div>
-</div>
-
-    <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@gmail.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
+    <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
 <script>
-   const projectGallery = {
-    'id-card': ['project 10.png', 'project 10.png'],
-    'logo': [
-        'project 10.png', 
-        'project 11.png', 
-        'project 25.png', 
-        'project 26.png', 
-        'project 29.jpg', 
-        'project 30.jpg'
-    ],
-    't-shirt': ['project 10.png'],
-    'thumbnail': ['project 10.png'],
-    'poster': ['project 10.png']
-};
-
-    // আপনার বাকি ফাংশনগুলো (openAlbum, closeAlbum) যেমন ছিল তেমনই থাকবে।
-    function openAlbum(category) {
-        const modal = document.getElementById("galleryModal");
-        const container = document.getElementById("modalContainer");
-        container.innerHTML = ""; 
-        const images = projectGallery[category];
-        if (images) {
-            images.forEach(imgSrc => {
-                const img = document.createElement("img");
-                img.src = imgSrc;
-                img.className = "modal-img";
-                container.appendChild(img);
-            });
+    function filterSelection(c) {
+        var x = document.getElementsByClassName("project-card");
+        if (c == "all") c = "";
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("show");
+            if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
         }
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; 
     }
 
-    function closeAlbum() {
-        document.getElementById("galleryModal").style.display = "none";
-        document.body.style.overflow = "auto"; 
+    // বাটন এক্টিভ রাখার জন্য
+    var btns = document.getElementsByClassName("filter-btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            document.querySelector(".filter-btn.active").classList.remove("active");
+            this.classList.add("active");
+        });
     }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("galleryModal")) closeAlbum();
-    }
+    filterSelection("all");
 </script>
 </body>
 </html>
