@@ -159,29 +159,43 @@
             nav { padding: 20px; }
             nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
             #home h1 { font-size: 2.5rem; }
- album-grid {
+.album-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 220px)); /* সাইজ ছোট ও সুন্দর করা হয়েছে */
-    gap: 15px;
+    /* auto-fit এর বদলে auto-fill ব্যবহার করুন যাতে ছবি ছোট থাকে */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 250px)); 
+    gap: 20px;
     justify-content: center;
     max-width: 1100px;
-    margin: 30px auto;
+    margin: 40px auto; /* এটি সেকশনকে মাঝখানে রাখবে */
+    padding: 0 20px;
 }
 
 .album-card {
     position: relative;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 15px;
     overflow: hidden;
     background: #000;
+    aspect-ratio: 1 / 1; /* বর্গাকার নিশ্চিত করবে */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .album-card img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* এটি ছবিকে বর্গাকার (Square) রাখবে */
+    height: 100%; /* বর্গাকার বক্সের পুরোটা জুড়ে থাকবে */
     object-fit: cover;
-    opacity: 0.9;
     display: block;
+    transition: 0.3s;
+}
+
+.album-card:hover img {
+    transform: scale(1.05); /* হোভার করলে হালকা জুম হবে */
+}
+
+.album-info {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    padding: 12px; background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white; font-size: 0.85rem; text-align: center;
 }
 
 .album-info {
