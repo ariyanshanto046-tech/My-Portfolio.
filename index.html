@@ -159,21 +159,43 @@
             nav { padding: 20px; }
             nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
             #home h1 { font-size: 2.5rem; }
-    /* অ্যালবাম কার্ড ডিজাইন */
-.album-grid {
+ album-grid {
     display: grid;
-    /* এক লাইনে কয়টি ছবি থাকবে তা এটা ঠিক করবে */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 300px)); 
-    gap: 15px; /* ছবির মাঝখানের ফাঁকা জায়গা */
-    justify-content: center; /* অ্যালবামগুলো মাঝখানে থাকবে */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 220px)); /* সাইজ ছোট ও সুন্দর করা হয়েছে */
+    gap: 15px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.album-card {
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
 }
 
 .album-card img {
     width: 100%;
-    height: 200px; /* উচ্চতা ২০০ পিক্সেল দিলে দেখতে সুন্দর লাগবে */
+    aspect-ratio: 1 / 1; /* এটি ছবিকে বর্গাকার (Square) রাখবে */
     object-fit: cover;
-    border-radius: 10px; /* কোণাগুলো একটু গোল হবে */
+    opacity: 0.9;
+    display: block;
 }
+
+.album-info {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    padding: 10px; background: rgba(0,0,0,0.7); 
+    color: white; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem;
+}
+
+/* পপ-আপ ডিজাইন (এটিও যোগ করে দিন) */
+.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; }
+.modal-content { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+.modal-img { width: 100%; border-radius: 8px; }
+.close-modal { position: fixed; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -245,23 +267,47 @@
     </section>
 
   <section id="projects">
-    <h2 class="section-title">My Albums</h2>
-    <p style="margin-bottom: 20px;">Click on an album to view all photos.</p>
-
+    <h2 class="section-title">My Creative Albums</h2>
+    <p style="margin-bottom: 20px;">অ্যালবামে ক্লিক করে সবগুলো কাজ দেখুন</p>
+    
     <div class="album-grid">
         <div class="album-card" onclick="openAlbum('id-card')">
-            <img src="c (1).jpg" alt="ID Card Cover">
+            <img src="c (1).jpg" alt="ID Card">
             <div class="album-info">
-                <div><strong>ID Card Designs</strong><br><small>Click to view</small></div>
-                <div class="album-icon">📂 +</div>
+                <span><strong>ID Card</strong></span>
+                <span class="album-icon">📂 +</span>
             </div>
         </div>
 
         <div class="album-card" onclick="openAlbum('logo')">
-            <img src="c (1).jpg" alt="Logo Cover">
+            <img src="c (1).jpg" alt="Logo">
             <div class="album-info">
-                <div><strong>Logo Designs</strong><br><small>Click to view</small></div>
-                <div class="album-icon">📂 +</div>
+                <span><strong>Logo Design</strong></span>
+                <span class="album-icon">📂 +</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('t-shirt')">
+            <img src="c (1).jpg" alt="T-Shirt">
+            <div class="album-info">
+                <span><strong>T-Shirt</strong></span>
+                <span class="album-icon">📂 +</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('thumbnail')">
+            <img src="c (1).jpg" alt="Thumbnail">
+            <div class="album-info">
+                <span><strong>Thumbnail</strong></span>
+                <span class="album-icon">📂 +</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('poster')">
+            <img src="c (1).jpg" alt="Poster">
+            <div class="album-info">
+                <span><strong>Poster</strong></span>
+                <span class="album-icon">📂 +</span>
             </div>
         </div>
     </div>
@@ -275,22 +321,19 @@
     <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@gmail.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
 <script>
-    // এখানে আপনার ছবির নামগুলো থাকবে
     const projectGallery = {
-        'id-card': [
-            'c (1).jpg',
-            'c (1).jpg'  // নতুন ছবি কমা দিয়ে এখানে যোগ করবেন
-        ],
-        'logo': [
-            'c (1).jpg'
-        ]
+        'id-card': ['c (1).jpg', 'c (1).jpg'], 
+        'logo': ['c (1).jpg'],
+        't-shirt': ['c (1).jpg'],
+        'thumbnail': ['c (1).jpg'],
+        'poster': ['c (1).jpg']
     };
 
+    // আপনার বাকি ফাংশনগুলো (openAlbum, closeAlbum) যেমন ছিল তেমনই থাকবে।
     function openAlbum(category) {
         const modal = document.getElementById("galleryModal");
         const container = document.getElementById("modalContainer");
         container.innerHTML = ""; 
-        
         const images = projectGallery[category];
         if (images) {
             images.forEach(imgSrc => {
@@ -310,8 +353,7 @@
     }
 
     window.onclick = function(event) {
-        const modal = document.getElementById("galleryModal");
-        if (event.target == modal) closeAlbum();
+        if (event.target == document.getElementById("galleryModal")) closeAlbum();
     }
 </script>
 </body>
