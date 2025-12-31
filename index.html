@@ -105,36 +105,7 @@
             opacity: 0.8;
         }
 
-        /* Slide 6: Projects Grid */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background: #eee;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-
+      
         /* Skills/Experience Lists */
         .info-list {
             list-style: none;
@@ -161,14 +132,36 @@
             #home h1 { font-size: 2.5rem; }
         }
     .filter-container { text-align: center; margin-bottom: 30px; }
-.filter-btn {
-    border: none; outline: none; padding: 10px 18px; background-color: #eee;
-    cursor: pointer; margin: 5px; border-radius: 5px; font-weight: 600;
-}
-.filter-btn.active { background-color: #007AFF; color: white; }
+
 .project-card { display: none; } /* শুরুতে সব ছবি লুকানো থাকবে */
 .project-card.show { display: block; animation: fadeIn 0.5s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  <style>
+/* অ্যালবামের জন্য নতুন স্টাইল */
+.album-card {
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+}
+.album-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.7; transition: 0.3s;
+}
+.album-card:hover img { opacity: 0.9; transform: scale(1.05); }
+.album-info {
+    position: absolute; bottom: 0; left: 0; padding: 20px; color: white;
+}
+.folder-icon {
+    position: absolute; bottom: 20px; right: 20px; color: white;
+    background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;
+}
+.project-card { display: none; border-radius: 10px; overflow: hidden; height: 250px; }
+.project-card img { width: 100%; height: 100%; object-fit: cover; }
+#photo-view .project-card.show { display: block; animation: fadeIn 0.5s; }
+</style>
     </style>
 </head>
 <body>
@@ -241,49 +234,95 @@
 
     <section id="projects">
     <h2 class="section-title">My Projects</h2>
-    
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterSelection('all')">All</button>
-        <button class="filter-btn" onclick="filterSelection('id-card')">ID Card Design</button>
-        <button class="filter-btn" onclick="filterSelection('logo')">Logo Design</button>
-        <button class="filter-btn" onclick="filterSelection('t-shirt')">T-Shirt Design</button>
-        <button class="filter-btn" onclick="filterSelection('thumbnail')">Thumbnail Design</button>
-        <button class="filter-btn" onclick="filterSelection('poster')">Poster Design</button>
+
+    <div id="album-view" class="project-grid">
+        <div class="album-card" onclick="openAlbum('id-card')">
+            <img src="project 1.png" alt="ID Card Design">
+            <div class="album-info">
+                <h3>ID Card Designs</h3>
+                <p>Click to view</p>
+                <span class="folder-icon">📂+</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('logo')">
+            <img src="project 11.png" alt="Logo Design">
+            <div class="album-info">
+                <h3>Logo Designs</h3>
+                <p>Click to view</p>
+                <span class="folder-icon">📂+</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('t-shirt')">
+            <img src="tshirt-cover.png" alt="T-Shirt Design"> <div class="album-info">
+                <h3>T-Shirt Designs</h3>
+                <p>Click to view</p>
+                <span class="folder-icon">📂+</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('thumbnail')">
+            <img src="thumb-cover.png" alt="Thumbnail Design">
+            <div class="album-info">
+                <h3>Thumbnail Designs</h3>
+                <p>Click to view</p>
+                <span class="folder-icon">📂+</span>
+            </div>
+        </div>
+
+        <div class="album-card" onclick="openAlbum('poster')">
+            <img src="poster-cover.png" alt="Poster Design">
+            <div class="album-info">
+                <h3>Poster Designs</h3>
+                <p>Click to view</p>
+                <span class="folder-icon">📂+</span>
+            </div>
+        </div>
     </div>
 
-    <div class="project-grid">
-        <div class="project-card id-card">
-            <img src="project 1.png" alt="ID Card Design">
-        </div>
+    <div id="photo-view" style="display: none;">
+        <button class="filter-btn" onclick="closeAlbum()" style="margin-bottom: 20px; background: #000; color: #fff;">← Back to Albums</button>
+        
+        <div class="project-grid">
+            <div class="project-card id-card"><img src="project 1.png" alt=""></div>
+            <div class="project-card id-card"><img src="id-2.png" alt=""></div>
 
-        <div class="project-card logo">
-            <img src="project 11.png" alt="ID Card Design">
-             <p style="text-align:center; padding:20px; background:#ddd;">Logo Image Here</p>
-        </div>
+            <div class="project-card logo"><img src="project 11.png" alt=""></div>
+            <div class="project-card logo"><img src="logo-2.png" alt=""></div>
+            
+            </div>
     </div>
 </section>
 
     <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
 <script>
-    function filterSelection(c) {
-        var x = document.getElementsByClassName("project-card");
-        if (c == "all") c = "";
-        for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("show");
-            if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
+    function openAlbum(category) {
+        // অ্যালবাম লিস্ট লুকিয়ে ফেলা
+        document.getElementById('album-view').style.display = 'none';
+        
+        // ফটো ভিউ দেখানো
+        document.getElementById('photo-view').style.display = 'block';
+        
+        // সব ছবি আগে হাইড করা
+        var photos = document.getElementsByClassName("project-card");
+        for (var i = 0; i < photos.length; i++) {
+            photos[i].style.display = "none";
+            // শুধু সিলেক্ট করা ক্যাটাগরির ছবিগুলো দেখানো
+            if (photos[i].classList.contains(category)) {
+                photos[i].style.display = "block";
+            }
         }
+        // পেজের উপরে স্ক্রল করা
+        window.scrollTo(0, document.getElementById('projects').offsetTop - 100);
     }
 
-    // বাটন এক্টিভ রাখার জন্য
-    var btns = document.getElementsByClassName("filter-btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            document.querySelector(".filter-btn.active").classList.remove("active");
-            this.classList.add("active");
-        });
+    function closeAlbum() {
+        // ফটো ভিউ লুকিয়ে অ্যালবাম ভিউ দেখানো
+        document.getElementById('photo-view').style.display = 'none';
+        document.getElementById('album-view').style.display = 'grid';
     }
-    filterSelection("all");
 </script>
 </body>
 </html>
