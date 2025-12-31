@@ -243,28 +243,33 @@
         </div>
     </section>
 
-    <section id="projects">
-    <h2 class="section-title">My Projects</h2>
-    
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterSelection('all')">All</button>
-        <button class="filter-btn" onclick="filterSelection('id-card')">ID Card Design</button>
-        <button class="filter-btn" onclick="filterSelection('logo')">Logo Design</button>
-        <button class="filter-btn" onclick="filterSelection('t-shirt')">T-Shirt Design</button>
-        <button class="filter-btn" onclick="filterSelection('thumbnail')">Thumbnail Design</button>
-        <button class="filter-btn" onclick="filterSelection('poster')">Poster Design</button>
-    </div>
+   <section id="projects">
+    <h2 class="section-title">My Albums</h2>
+    <p style="margin-bottom: 20px;">Click on an album to view all photos.</p>
 
-    <div class="project-grid">
-        <div class="project-card id-card">
-            <img src="c (1).jpg" alt="ID Card Design">
+    <div class="album-grid">
+        <div class="album-card" onclick="openAlbum('id-card')">
+            <img src="c (1).jpg" alt="ID Card Cover">
+            <div class="album-info">
+                <div><strong>ID Card Designs</strong><br><small>Click to view</small></div>
+                <div class="album-icon">📂 +</div>
+            </div>
         </div>
 
-        <div class="project-card logo">
-             <p style="text-align:center; padding:20px; background:#ddd;">Logo Image Here</p>
+        <div class="album-card" onclick="openAlbum('logo')">
+            <img src="c (1).jpg" alt="Logo Cover">
+            <div class="album-info">
+                <div><strong>Logo Designs</strong><br><small>Click to view</small></div>
+                <div class="album-icon">📂 +</div>
+            </div>
         </div>
     </div>
 </section>
+
+<div id="galleryModal" class="modal">
+    <span class="close-modal" onclick="closeAlbum()">&times;</span>
+    <div class="modal-content" id="modalContainer"></div>
+</div>
 
     <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
