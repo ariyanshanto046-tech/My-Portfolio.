@@ -274,24 +274,44 @@
     <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
     <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
 <script>
-    function filterSelection(c) {
-        var x = document.getElementsByClassName("project-card");
-        if (c == "all") c = "";
-        for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("show");
-            if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
+    // এখানে আপনার ছবির নামগুলো থাকবে
+    const projectGallery = {
+        'id-card': [
+            'c (1).jpg',
+            'c (1).jpg'  // নতুন ছবি কমা দিয়ে এখানে যোগ করবেন
+        ],
+        'logo': [
+            'c (1).jpg'
+        ]
+    };
+
+    function openAlbum(category) {
+        const modal = document.getElementById("galleryModal");
+        const container = document.getElementById("modalContainer");
+        container.innerHTML = ""; 
+        
+        const images = projectGallery[category];
+        if (images) {
+            images.forEach(imgSrc => {
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.className = "modal-img";
+                container.appendChild(img);
+            });
         }
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; 
     }
 
-    // বাটন এক্টিভ রাখার জন্য
-    var btns = document.getElementsByClassName("filter-btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            document.querySelector(".filter-btn.active").classList.remove("active");
-            this.classList.add("active");
-        });
+    function closeAlbum() {
+        document.getElementById("galleryModal").style.display = "none";
+        document.body.style.overflow = "auto"; 
     }
-    filterSelection("all");
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("galleryModal");
+        if (event.target == modal) closeAlbum();
+    }
 </script>
 </body>
 </html>
