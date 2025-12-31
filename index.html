@@ -6,7 +6,6 @@
     <title>Graphic Designer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables - সহজেই কালার বা ফন্ট পরিবর্তনের জন্য */
         :root {
             --primary-color: #000000;
             --accent-color: #007AFF;
@@ -15,153 +14,72 @@
             --section-bg: #f9f9f9;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-        body {
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            scroll-behavior: smooth;
-        }
+        body { line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); scroll-behavior: smooth; }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
+            position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.9);
+            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 0.9rem; }
+
+        /* General Sections */
+        section { min-height: 100vh; padding: 100px 10% 50px; display: flex; flex-direction: column; justify-content: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; font-weight: 800; border-left: 5px solid var(--accent-color); padding-left: 20px; }
+
+        #home { background-color: var(--primary-color); color: white; text-align: center; }
+        #home h1 { font-size: 4rem; }
+
+        .info-list li { margin-bottom: 20px; padding: 20px; background: var(--section-bg); border-radius: 8px; list-style: none; }
+
+        /* --- PROJECTS & ALBUM SYSTEM CSS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        nav .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
+        .album-card {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
+        .album-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .album-card:hover img { transform: scale(1.1); }
+
+        .album-info {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white; padding: 20px;
         }
 
-        nav ul li {
-            margin-left: 30px;
+        .folder-icon { position: absolute; bottom: 20px; right: 20px; font-size: 1.5rem; }
+
+        .project-card { 
+            height: 300px; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            display: none; /* শুরুতে লুকানো থাকবে */
+        }
+        .project-card img { width: 100%; height: 100%; object-fit: contain; background: #f0f0f0; }
+
+        .back-btn {
+            padding: 12px 25px; background: #000; color: white; border: none;
+            border-radius: 5px; cursor: pointer; margin-bottom: 30px; font-weight: bold;
         }
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Full Screen Sections (Slides) */
-        section {
-            min-height: 100vh;
-            padding: 100px 10% 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            font-weight: 800;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 20px;
-        }
-
-        /* Slide 1: Hero */
-        #home {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-        }
-
-        #home h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-
-        #home p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            opacity: 0.8;
-        }
-
-      
-        /* Skills/Experience Lists */
-        .info-list {
-            list-style: none;
-        }
-
-        .info-list li {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: var(--section-bg);
-            border-radius: 8px;
-        }
-
-        /* Footer/Personal Info */
-        footer {
-            padding: 50px 10%;
-            background: #111;
-            color: white;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 20px; }
-            nav ul { display: none; } /* Mobile এ মেনু হাইড রাখা হলো সহজে বোঝার জন্য */
-            #home h1 { font-size: 2.5rem; }
-        }
-    .filter-container { text-align: center; margin-bottom: 30px; }
-
-.project-card { display: none; } /* শুরুতে সব ছবি লুকানো থাকবে */
-.project-card.show { display: block; animation: fadeIn 0.5s; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  <style>
-/* অ্যালবামের জন্য নতুন স্টাইল */
-.album-card {
-    position: relative;
-    height: 250px;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    background: #000;
-}
-.album-card img {
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.7; transition: 0.3s;
-}
-.album-card:hover img { opacity: 0.9; transform: scale(1.05); }
-.album-info {
-    position: absolute; bottom: 0; left: 0; padding: 20px; color: white;
-}
-.folder-icon {
-    position: absolute; bottom: 20px; right: 20px; color: white;
-    background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;
-}
-.project-card { display: none; border-radius: 10px; overflow: hidden; height: 250px; }
-.project-card img { width: 100%; height: 100%; object-fit: cover; }
-#photo-view .project-card.show { display: block; animation: fadeIn 0.5s; }
-</style>
+        footer { padding: 50px 10%; background: #111; color: white; }
     </style>
 </head>
 <body>
@@ -171,10 +89,8 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -183,146 +99,77 @@
         <p>Junior Graphic Designer</p>
     </section>
 
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <p style="font-size: 1.2rem; max-width: 800px;">
-            I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Since then, I have been honing my skills in creating clean and impactful visuals. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work. I am dedicated to delivering quality designs that effectively communicate a brand's message.
-        </p>
-    </section>
-
-    <section id="experience" style="background-color: var(--section-bg);">
-        <h2 class="section-title">Experience</h2>
-        <ul class="info-list">
-            <li>
-                <strong>Junior Graphic Designer</strong> - Freelance & Training (2023 – Present)
-                <p>I am a passionate Graphic Designer with a solid foundation in design principles, having completed my Graphic Design course in 2023. Since then, I have been honing my skills in creating clean and impactful visuals. Currently studying Computer Science and Technology, I bring a technical and modern approach to my creative work. I am dedicated to delivering quality designs that effectively communicate a brand's message.</p>
-            </li>
-            <li>
-                <strong>Digital Service & IT Specialist</strong> - Confidence Library (2022 - 2025)
-                <p>Expertly managed diverse digital services, including NID, Birth Registrations, and government applications. Specialized in data management, technical troubleshooting, and streamlined online workflows. Proven ability to deliver accurate results under tight deadlines while maintaining excellent user support and operational efficiency.</p>
-            </li>
-        </ul>  
-    <section id="education">
-    <h2 class="section-title">Education</h2>
-    <ul class="info-list">
-        <li>
-            <strong>Diploma in Computer Science & Technology</strong>
-            <p>Munshiganj Polytechnic Institute</p>
-            <p>(2023 - Present)</p>
-            <p>বর্তমানে ৪র্থ পর্বে অধ্যয়নরত।</p>
-        </li>
-        <li>
-            <strong>Secondary School Certificate (SSC)</strong>
-            <p>Hossainpur S.P. Union High School</p>
-            <p>Vocational (Building Maintenance)</p>
-            <p>(2017 - 2023)</p>
-        </li>
-    </ul>
-</section>
-
-    <section id="skills" style="background-color: var(--section-bg);">
-        <h2 class="section-title">Skills</h2>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Photoshop 2022</span>
-            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Adobe Illustrator 2022</span>
-            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius:20px;">
-    Microsoft Word</span>
-            <span style="padding: 10px 20px; background: #000; color: #fff; border-radius: 20px;">Microsoft Excel</span>
-         
-        </div>
-    </section>
-
     <section id="projects">
-    <h2 class="section-title">My Projects</h2>
+        <h2 class="section-title">My Projects</h2>
 
-    <div id="album-view" class="project-grid">
-        <div class="album-card" onclick="openAlbum('id-card')">
-            <img src="project 1.png" alt="ID Card Design">
-            <div class="album-info">
-                <h3>ID Card Designs</h3>
-                <p>Click to view</p>
-                <span class="folder-icon">📂+</span>
+        <div id="album-view" class="project-grid">
+            <div class="album-card" onclick="openAlbum('id-card')">
+                <img src="project 1.png" alt="ID Card"> 
+                <div class="album-info">
+                    <h3>ID Card Designs</h3>
+                    <p>Click to view collection</p>
+                    <span class="folder-icon">📂</span>
+                </div>
+            </div>
+
+            <div class="album-card" onclick="openAlbum('logo')">
+                <img src="project 11.png" alt="Logo">
+                <div class="album-info">
+                    <h3>Logo Designs</h3>
+                    <p>Click to view collection</p>
+                    <span class="folder-icon">📂</span>
+                </div>
+            </div>
+
+            <div class="album-card" onclick="openAlbum('poster')">
+                <img src="Screenshot 2025-12-31 233246.jpg" alt="Poster">
+                <div class="album-info">
+                    <h3>Poster Designs</h3>
+                    <p>Click to view collection</p>
+                    <span class="folder-icon">📂</span>
+                </div>
+            </div>
+            </div>
+
+        <div id="photo-view" style="display: none;">
+            <button class="back-btn" onclick="closeAlbum()">← Back to Albums</button>
+            <div class="project-grid">
+                <div class="project-card id-card"><img src="project 1.png"></div>
+                <div class="project-card id-card"><img src="id-2.png"></div>
+
+                <div class="project-card logo"><img src="project 11.png"></div>
+                <div class="project-card logo"><img src="Screenshot 2025-12-31 233226.png"></div>
+
+                <div class="project-card poster"><img src="Screenshot 2025-12-31 233246.jpg"></div>
             </div>
         </div>
+    </section>
 
-        <div class="album-card" onclick="openAlbum('logo')">
-            <img src="project 11.png" alt="Logo Design">
-            <div class="album-info">
-                <h3>Logo Designs</h3>
-                <p>Click to view</p>
-                <span class="folder-icon">📂+</span>
-            </div>
-        </div>
+    <footer id="contact">
+        <h2>Get In Touch</h2>
+        <p>Email: ariyanshanto046@email.com</p>
+    </footer>
 
-        <div class="album-card" onclick="openAlbum('t-shirt')">
-            <img src="tshirt-cover.png" alt="T-Shirt Design"> <div class="album-info">
-                <h3>T-Shirt Designs</h3>
-                <p>Click to view</p>
-                <span class="folder-icon">📂+</span>
-            </div>
-        </div>
-
-        <div class="album-card" onclick="openAlbum('thumbnail')">
-            <img src="thumb-cover.png" alt="Thumbnail Design">
-            <div class="album-info">
-                <h3>Thumbnail Designs</h3>
-                <p>Click to view</p>
-                <span class="folder-icon">📂+</span>
-            </div>
-        </div>
-
-        <div class="album-card" onclick="openAlbum('poster')">
-            <img src="poster-cover.png" alt="Poster Design">
-            <div class="album-info">
-                <h3>Poster Designs</h3>
-                <p>Click to view</p>
-                <span class="folder-icon">📂+</span>
-            </div>
-        </div>
-    </div>
-
-    <div id="photo-view" style="display: none;">
-        <button class="filter-btn" onclick="closeAlbum()" style="margin-bottom: 20px; background: #000; color: #fff;">← Back to Albums</button>
-        
-        <div class="project-grid">
-            <div class="project-card id-card"><img src="project 1.png" alt=""></div>
-            <div class="project-card id-card"><img src="id-2.png" alt=""></div>
-
-            <div class="project-card logo"><img src="project 11.png" alt=""></div>
-            <div class="project-card logo"><img src="logo-2.png" alt=""></div>
+    <script>
+        function openAlbum(category) {
+            document.getElementById('album-view').style.display = 'none';
+            document.getElementById('photo-view').style.display = 'block';
             
-            </div>
-    </div>
-</section>
-
-    <footer id="contact" style="background: #111; color: white; padding: 60px 10%; text-align: left;"> <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;"> <div style="flex: 1; min-width: 250px;"> <h2 style="margin-bottom: 20px; font-size: 2rem;">Get In Touch</h2> <p style="margin: 10px 0;"><strong>Email:</strong> ariyanshanto046@email.com</p> <p style="margin: 10px 0;"><strong>WhatsApp:</strong> +880 16476-45112</p> <p style="margin: 10px 0;"><strong>LinkedIn:</strong> https://www.linkedin.com/in/hossain-mahamud-shanto-0919aa392</p> <br> <p style="font-size: 0.8rem; opacity: 0.5;">© 2025 All Rights Reserved.</p> </div> <div style="flex: 1; display: flex; justify-content: flex-end; min-width: 250px;">
-    <img src="c (1).jpg" alt="Your Photo" style="width: 250px; height: 250px; border-radius: 10px; border: 2px solid #555; object-fit: cover;"> </div> </footer>
-<script>
-    function openAlbum(category) {
-        // অ্যালবাম লিস্ট লুকিয়ে ফেলা
-        document.getElementById('album-view').style.display = 'none';
-        
-        // ফটো ভিউ দেখানো
-        document.getElementById('photo-view').style.display = 'block';
-        
-        // সব ছবি আগে হাইড করা
-        var photos = document.getElementsByClassName("project-card");
-        for (var i = 0; i < photos.length; i++) {
-            photos[i].style.display = "none";
-            // শুধু সিলেক্ট করা ক্যাটাগরির ছবিগুলো দেখানো
-            if (photos[i].classList.contains(category)) {
-                photos[i].style.display = "block";
+            var photos = document.getElementsByClassName("project-card");
+            for (var i = 0; i < photos.length; i++) {
+                if (photos[i].classList.contains(category)) {
+                    photos[i].style.display = "block";
+                } else {
+                    photos[i].style.display = "none";
+                }
             }
+            window.scrollTo(0, document.getElementById('projects').offsetTop - 50);
         }
-        // পেজের উপরে স্ক্রল করা
-        window.scrollTo(0, document.getElementById('projects').offsetTop - 100);
-    }
 
-    function closeAlbum() {
-        // ফটো ভিউ লুকিয়ে অ্যালবাম ভিউ দেখানো
-        document.getElementById('photo-view').style.display = 'none';
-        document.getElementById('album-view').style.display = 'grid';
-    }
-</script>
+        function closeAlbum() {
+            document.getElementById('photo-view').style.display = 'none';
+            document.getElementById('album-view').style.display = 'grid';
+        }
+    </script>
 </body>
 </html>
